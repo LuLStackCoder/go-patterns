@@ -1,13 +1,13 @@
-package main
+package account
 
 import (
 	"fmt"
 )
 
 type Account interface {
-	info() string
-	validateName(accountName string) error
-	validatePhone(accountPhone string) error
+	Info() string
+	ValidateName(accountName string) error
+	ValidatePhone(accountPhone string) error
 }
 
 type account struct {
@@ -15,11 +15,11 @@ type account struct {
 	phone string
 }
 
-func (a *account) info() string {
+func (a *account) Info() string {
 	return fmt.Sprintf("{\n\t\"name\": \"%s\",\n\t\"phone\": \"%s\"\n}", a.name, a.phone)
 }
 
-func (a *account) validateName(accountName string) error {
+func (a *account) ValidateName(accountName string) error {
 	if a.name != accountName {
 		return fmt.Errorf("account name is incorrect")
 	}
@@ -27,7 +27,7 @@ func (a *account) validateName(accountName string) error {
 	return nil
 }
 
-func (a *account) validatePhone(accountPhone string) error {
+func (a *account) ValidatePhone(accountPhone string) error {
 	if a.phone != accountPhone {
 		return fmt.Errorf("account phone is invalid")
 	}
@@ -35,6 +35,6 @@ func (a *account) validatePhone(accountPhone string) error {
 	return nil
 }
 
-func newAccount(name, phone string) *account {
+func NewAccount(name, phone string) *account {
 	return &account{name: name, phone: phone}
 }

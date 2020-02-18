@@ -4,7 +4,9 @@ import (
 	`fmt`
 )
 
-type Waller interface {
+type Wallet interface {
+	AddToBalance(amount int)
+	SubFromBalance(amount int) error
 }
 
 type wallet struct {
@@ -13,11 +15,20 @@ type wallet struct {
 	cvv        string
 }
 
-func (w *wallet) addBalance(amount int) {
+func (w *wallet) AddToBalance(amount int) {
 	w.balance += amount
-	fmt.Printf("%s")
+	fmt.Printf("%d succesfully added on wallet", amount)
 }
 
-func newWallet(balance int, cardNumber string, cvv string) *wallet {
+func (w *wallet) SubFromBalance(amount int) error {
+	if w.balance < amount {
+		return fmt.Errorf("not enough money on wallet")
+	}
+	w.balance -= amount
+	fmt.Printf("%d succesfully debited from wallet", amount)
+	return nil
+}
+
+func NewWallet(balance int, cardNumber string, cvv string) *wallet {
 	return &wallet{balance: balance, cardNumber: cardNumber, cvv: cvv}
 }
