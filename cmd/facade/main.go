@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/LuLStackCoder/go-patterns/pkg/account"
-	"github.com/LuLStackCoder/go-patterns/pkg/payment"
-	"github.com/LuLStackCoder/go-patterns/pkg/wallet"
+	"github.com/LuLStackCoder/go-patterns/pkg/facade/account"
+	"github.com/LuLStackCoder/go-patterns/pkg/facade/payment"
+	"github.com/LuLStackCoder/go-patterns/pkg/facade/wallet"
 )
 
 func main() {
