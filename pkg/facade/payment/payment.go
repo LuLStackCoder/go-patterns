@@ -1,44 +1,55 @@
 package payment
 
-type account interface {
-	Info() string
-	ValidateName(accountName string) error
-	ValidatePhone(accountPhone string) error
+type account = interface {
+	ValidateAccount(accountName, cardNumber, cvv string) error
+	Info() (string, error)
+	AddToBalance(amount uint64) error
+	SubFromBalance(amount uint64) error
 }
 
-type wallet interface {
-	AddToBalance(amount int)
-	SubFromBalance(amount int) error
+type storage = interface {
+	GetAccount(accountID uint64) (account, error)
 }
 
 type Payment interface {
-	AddMoney(accountName string, amount int) error
-	DeductMoney(accountName string, amount int) error
+	AddMoney(accountID uint64, accountName, cardNumber, cvv string, amount uint64) error
+	DeductMoney(accountID uint64, accountName, cardNumber, cvv string, amount uint64) error
 }
 
 type payment struct {
-	account account
-	wallet  wallet
+	storage storage
 }
 
-func (p *payment) AddMoney(accountName string, amount int) error {
-	if err := p.account.ValidateName(accountName); err != nil {
-		return err
+func (p *payment) AddMoney(accountID uint64, accountName, cardNumber, cvv string, amount uint64) error {
+	account, errGetAccount := p.storage.GetAccount(accountID)
+	if errGetAccount != nil {
+		return errGetAccount
 	}
-	p.wallet.AddToBalance(amount)
-	return nil
-}
-
-func (p *payment) DeductMoney(accountName string, amount int) error {
-	if err := p.account.ValidateName(accountName); err != nil {
-		return err
+	if errValidate := account.ValidateAccount(accountName, cardNumber, cvv); errValidate != nil {
+		return errValidate
 	}
-	if err := p.wallet.SubFromBalance(amount); err != nil {
-		return err
+	if errAdd := account.AddToBalance(amount); errAdd != nil {
+		return errAdd
 	}
 	return nil
 }
 
-func NewPayment(account account, wallet wallet) *payment {
-	return &payment{account: account, wallet: wallet}
+func (p *payment) DeductMoney(accountID uint64, accountName, cardNumber, cvv string, amount uint64) error {
+	account, errGetAccount := p.storage.GetAccount(accountID)
+	if errGetAccount != nil {
+		return errGetAccount
+	}
+	if errValidate := account.ValidateAccount(accountName, cardNumber, cvv); errValidate != nil {
+		return errValidate
+	}
+	if errAdd := account.SubFromBalance(amount); errAdd != nil {
+		return errAdd
+	}
+	return nil
+}
+
+func NewPayment(storage storage) Payment {
+	return &payment{
+		storage: storage,
+	}
 }
