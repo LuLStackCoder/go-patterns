@@ -4,9 +4,9 @@ import (
 	`fmt`
 	`os`
 
-	`github.com/LuLStackCoder/go-patterns/pkg/facade/account`
-	`github.com/LuLStackCoder/go-patterns/pkg/facade/payment`
-	`github.com/LuLStackCoder/go-patterns/pkg/facade/storage`
+	`github.com/LuLStackCoder/go-patterns/pkg/account`
+	`github.com/LuLStackCoder/go-patterns/pkg/payment`
+	`github.com/LuLStackCoder/go-patterns/pkg/storage`
 )
 
 func main() {
@@ -23,15 +23,19 @@ func main() {
 		fmt.Println(accounts[i])
 	}
 	var newStorage = storage.NewStorage(accounts)
-	paymentSystem := payment.NewPayment(newStorage)
-	if err := paymentSystem.AddMoney(0, "JamesBond", "427623499434", "221", 220); err != nil {
+	var paymentSystem = payment.NewPayment(newStorage)
+	if err := paymentSystem.Credit(0, 220); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
-	if err := paymentSystem.DeductMoney(2, "EdsgerDijkstra", "427621234151", "355", 3000); err != nil {
+	if err := paymentSystem.Debit(2, 3000); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
+	if err := paymentSystem.Debit(5, 3000); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
 	for i, _ := range accounts {
 		fmt.Println(accounts[i])
 	}
-
+	var res, _ = paymentSystem.GetInfo(1)
+	fmt.Println(res)
 }
