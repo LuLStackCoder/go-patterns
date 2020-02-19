@@ -5,7 +5,7 @@ import (
 	`os`
 
 	`github.com/LuLStackCoder/go-patterns/pkg/account`
-	`github.com/LuLStackCoder/go-patterns/pkg/payment`
+	`github.com/LuLStackCoder/go-patterns/pkg/facade`
 	`github.com/LuLStackCoder/go-patterns/pkg/storage`
 )
 
@@ -23,7 +23,7 @@ func main() {
 		fmt.Println(accounts[i])
 	}
 	var newStorage = storage.NewStorage(accounts)
-	var paymentSystem = payment.NewPayment(newStorage)
+	var paymentSystem = facade.NewPayment(newStorage)
 	if err := paymentSystem.Credit(0, 220); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}

@@ -1,4 +1,4 @@
-package payment
+package facade
 
 type account = interface {
 	AddToBalance(amount uint64) error
