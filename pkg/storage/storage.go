@@ -23,7 +23,7 @@ type storage struct {
 func (s *storage) GetAccount(accountID uint64) (account, error) {
 	var reqAccount, ok = s.accounts[accountID]
 	if ok == false {
-		return nil, fmt.Errorf(fmt.Sprintf("ID %d id doesn't exist in account storage", accountID))
+		return nil, fmt.Errorf("id doesn't exist in account storage")
 	}
 	return reqAccount, nil
 }
