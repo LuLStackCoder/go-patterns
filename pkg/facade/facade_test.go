@@ -48,6 +48,54 @@ type args struct {
 	amount    uint64
 }
 
+func TestPaymentGetInfo(t *testing.T) {
+	type fields struct {
+		storage storage
+	}
+	type args struct {
+		accountID uint64
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    string
+		wantErr bool
+	}{
+		{
+			name:    "TestInfoOk",
+			args:    args{1},
+			want:    infoId1,
+			wantErr: false,
+		},
+		{
+			name:    "TestBadId",
+			args:    args{32},
+			want:    "",
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			accountMock := new(account2.Mock)
+			accountMock.On(methodInfo).Return(infoId1).Once()
+
+			storageMock := new(storage2.Mock)
+			storageMock.On(methodGetAccount, successID).Return(accountById1, nil).Once()
+			storageMock.On(methodGetAccount, failID).Return(nil, badIdError).Once()
+
+			p := NewPayment(storageMock)
+			got, err := p.GetInfo(tt.args.accountID)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("GetInfo() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got != tt.want {
+				t.Errorf("GetInfo() got = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestPaymentCredit(t *testing.T) {
 	tests := []struct {
 		name    string
@@ -123,54 +171,6 @@ func TestPaymentDebit(t *testing.T) {
 			p := NewPayment(storageMock)
 			if err := p.Debit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("Debit() error = %v, wantErr %v", err, tt.wantErr)
-			}
-		})
-	}
-}
-
-func TestPaymentGetInfo(t *testing.T) {
-	type fields struct {
-		storage storage
-	}
-	type args struct {
-		accountID uint64
-	}
-	tests := []struct {
-		name    string
-		args    args
-		want    string
-		wantErr bool
-	}{
-		{
-			name:"TestInfoOk",
-			args: args{1},
-			want: infoId1,
-			wantErr: false,
-		},
-		{
-			name:"TestBadId",
-			args: args{32},
-			want: "",
-			wantErr: true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			accountMock := new(account2.Mock)
-			accountMock.On(methodInfo).Return(infoId1).Once()
-
-			storageMock := new(storage2.Mock)
-			storageMock.On(methodGetAccount, successID).Return(accountById1, nil).Once()
-			storageMock.On(methodGetAccount, failID).Return(nil, badIdError).Once()
-
-			p := NewPayment(storageMock)
-			got, err := p.GetInfo(tt.args.accountID)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("GetInfo() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if got != tt.want {
-				t.Errorf("GetInfo() got = %v, want %v", got, tt.want)
 			}
 		})
 	}

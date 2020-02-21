@@ -10,19 +10,19 @@ type storage = interface {
 	GetAccount(accountID uint64) (account, error)
 }
 
-// Payment implements possibility to credit/debit the specific account balance by id
-type Payment interface {
+// Facade implements possibility to credit/debit the specific account balance by id
+type Facade interface {
 	Credit(accountID uint64, amount uint64) error
 	Debit(accountID uint64, amount uint64) error
 	GetInfo(accountID uint64) (string, error)
 }
 
-type payment struct {
+type facade struct {
 	storage storage
 }
 
 // Credit adds the amount to the certain account balance obtained from storage by id
-func (p *payment) Credit(accountID uint64, amount uint64) error {
+func (p *facade) Credit(accountID uint64, amount uint64) error {
 	var account, errGetAccount = p.storage.GetAccount(accountID)
 	if errGetAccount != nil {
 		return errGetAccount
@@ -34,7 +34,7 @@ func (p *payment) Credit(accountID uint64, amount uint64) error {
 }
 
 // Debit remove the amount to the certain account balance obtained from storage by id
-func (p *payment) Debit(accountID uint64, amount uint64) error {
+func (p *facade) Debit(accountID uint64, amount uint64) error {
 	var account, errGetAccount = p.storage.GetAccount(accountID)
 	if errGetAccount != nil {
 		return errGetAccount
@@ -46,7 +46,7 @@ func (p *payment) Debit(accountID uint64, amount uint64) error {
 }
 
 // Get info about the certain accountID
-func (p *payment) GetInfo(accountID uint64) (string, error) {
+func (p *facade) GetInfo(accountID uint64) (string, error) {
 	var account, errGetAccount = p.storage.GetAccount(accountID)
 	if errGetAccount != nil {
 		return "", errGetAccount
@@ -55,9 +55,9 @@ func (p *payment) GetInfo(accountID uint64) (string, error) {
 	return jsonString, nil
 }
 
-// NewPayment initializes the Payment
-func NewPayment(storage storage) Payment {
-	return &payment{
+// NewPayment initializes the Facade
+func NewPayment(storage storage) Facade {
+	return &facade{
 		storage: storage,
 	}
 }

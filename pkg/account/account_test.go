@@ -16,13 +16,6 @@ const (
 }`
 )
 
-// var arrFields = []fields{
-// 	{0, "JamesBond", "427623499434", "221", 450},
-// 	{1, "AlexMercer", "427623452142", "772", 1200},
-// 	{2, "EdsgerDijkstra", "427621234151", "355", 3400},
-// 	{3, "AlanTuring", "42762948753743", "987", 5000},
-// }
-
 type fields struct {
 	accountID  uint64
 	name       string
@@ -78,8 +71,8 @@ func TestAccountSubFromBalance(t *testing.T) {
 
 func TestAccountInfo(t *testing.T) {
 	tests := []struct {
-		name   string
-		want   string
+		name string
+		want string
 	}{
 		{"TestInfoAlex", expectedStringAlex},
 	}

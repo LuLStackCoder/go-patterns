@@ -10,32 +10,34 @@ import (
 )
 
 func main() {
-	var clients [4]account.Account
-	clients[0] = account.NewAccount(0, "JamesBond", "427623499434", "221", 450)
-	clients[1] = account.NewAccount(1, "AlexMercer", "427623452142", "772", 1200)
-	clients[2] = account.NewAccount(2, "EdsgerDijkstra", "427621234151", "355", 3400)
-	clients[3] = account.NewAccount(3, "AlanTuring", "42762948753743", "987", 5000)
-	var accounts = make(map[uint64]account.Account)
-	for i, _ := range clients {
-		accounts[uint64(i)] = clients[i]
-	}
-	for i, _ := range accounts {
-		fmt.Println(accounts[i])
+	var accounts = map[uint64]account.Account{
+		0: account.NewAccount(0, "JamesBond", "427623499434", "221", 450),
+		1: account.NewAccount(1, "AlexMercer", "427623452142", "772", 1200),
+		2: account.NewAccount(2, "EdsgerDijkstra", "427621234151", "355", 3400),
+		3: account.NewAccount(3, "AlanTuring", "42762948753743", "987", 5000),
 	}
 	var newStorage = storage.NewStorage(accounts)
 	var paymentSystem = facade.NewPayment(newStorage)
-	if err := paymentSystem.Credit(0, 220); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+	var infoId0, errId0 = paymentSystem.GetInfo(0)
+	if errId0 == nil {
+		fmt.Println(infoId0)
+		if err := paymentSystem.Credit(0, 220); err != nil {
+			_, _ = fmt.Fprintln(os.Stderr, err)
+		}
+		infoId0, _ = paymentSystem.GetInfo(0)
+		fmt.Println(infoId0)
 	}
-	if err := paymentSystem.Debit(2, 3000); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+	var infoId2, errId2 = paymentSystem.GetInfo(2)
+	if errId2 == nil {
+		fmt.Println(infoId2)
+		if err := paymentSystem.Debit(2, 3000); err != nil {
+			_, _ = fmt.Fprintln(os.Stderr, err)
+		}
+		infoId2, _ = paymentSystem.GetInfo(2)
+		fmt.Println(infoId2)
 	}
-	if err := paymentSystem.Debit(5, 3000); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+	var infoId1, errId1 = paymentSystem.GetInfo(1)
+	if errId1 == nil {
+		fmt.Println(infoId1)
 	}
-	for i, _ := range accounts {
-		fmt.Println(accounts[i])
-	}
-	var res, _ = paymentSystem.GetInfo(1)
-	fmt.Println(res)
 }
