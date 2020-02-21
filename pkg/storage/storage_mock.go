@@ -1,8 +1,9 @@
 package storage
 
 import (
-	account2 `github.com/LuLStackCoder/go-patterns/pkg/account`
 	`github.com/stretchr/testify/mock`
+
+	account2 `github.com/LuLStackCoder/go-patterns/pkg/account`
 )
 
 type Mock struct {

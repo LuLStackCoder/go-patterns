@@ -7,13 +7,6 @@ import (
 )
 
 const (
-	expectedStringJames = `{
-	"accountID": 0,
-	"name": "JamesBond",
-	"cardNumber": "427623499434",
-	"cvv": "221",
-	"balance": 450
-}`
 	expectedStringAlex = `{
 	"accountID": 1,
 	"name": "AlexMercer",
@@ -23,12 +16,12 @@ const (
 }`
 )
 
-var arrFields = []fields{
-	{0, "JamesBond", "427623499434", "221", 450},
-	{1, "AlexMercer", "427623452142", "772", 1200},
-	{2, "EdsgerDijkstra", "427621234151", "355", 3400},
-	{3, "AlanTuring", "42762948753743", "987", 5000},
-}
+// var arrFields = []fields{
+// 	{0, "JamesBond", "427623499434", "221", 450},
+// 	{1, "AlexMercer", "427623452142", "772", 1200},
+// 	{2, "EdsgerDijkstra", "427621234151", "355", 3400},
+// 	{3, "AlanTuring", "42762948753743", "987", 5000},
+// }
 
 type fields struct {
 	accountID  uint64
@@ -44,23 +37,16 @@ func TestAccountAddToBalance(t *testing.T) {
 	}
 	tests := []struct {
 		name    string
-		fields  fields
 		args    args
 		wantErr bool
 	}{
-		{"TestErrAddMinLim", arrFields[0], args{0}, true},
-		{"TestErrAddMaxLim", arrFields[1], args{50000}, true},
-		{"TestAddOk", arrFields[2], args{1000}, false},
+		{"TestErrAddMinLim", args{0}, true},
+		{"TestErrAddMaxLim", args{50000}, true},
+		{"TestAddOk", args{1000}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			a := &account{
-				accountID:  tt.fields.accountID,
-				name:       tt.fields.name,
-				cardNumber: tt.fields.cardNumber,
-				cvv:        tt.fields.cvv,
-				balance:    tt.fields.balance,
-			}
+			a := NewAccount(1, "AlexMercer", "427623452142", "772", 1200)
 			if err := a.AddToBalance(tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("AddToBalance() error = %v, wantErr %v", err, tt.wantErr)
 			}
@@ -74,22 +60,15 @@ func TestAccountSubFromBalance(t *testing.T) {
 	}
 	tests := []struct {
 		name    string
-		fields  fields
 		args    args
 		wantErr bool
 	}{
-		{"TestErrSub", arrFields[0], args{2200}, true},
-		{"TestOkSub", arrFields[1], args{100}, false},
+		{"TestErrSub", args{2200}, true},
+		{"TestOkSub", args{100}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			a := &account{
-				accountID:  tt.fields.accountID,
-				name:       tt.fields.name,
-				cardNumber: tt.fields.cardNumber,
-				cvv:        tt.fields.cvv,
-				balance:    tt.fields.balance,
-			}
+			a := NewAccount(1, "AlexMercer", "427623452142", "772", 1200)
 			if err := a.SubFromBalance(tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("SubFromBalance() error = %v, wantErr %v", err, tt.wantErr)
 			}
@@ -100,21 +79,13 @@ func TestAccountSubFromBalance(t *testing.T) {
 func TestAccountInfo(t *testing.T) {
 	tests := []struct {
 		name   string
-		fields fields
 		want   string
 	}{
-		{"TestInfoJames", arrFields[0], expectedStringJames},
-		{"TestInfoAlex", arrFields[1], expectedStringAlex},
+		{"TestInfoAlex", expectedStringAlex},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			a := &account{
-				accountID:  tt.fields.accountID,
-				name:       tt.fields.name,
-				cardNumber: tt.fields.cardNumber,
-				cvv:        tt.fields.cvv,
-				balance:    tt.fields.balance,
-			}
+			a := NewAccount(1, "AlexMercer", "427623452142", "772", 1200)
 			assert.Equal(t, tt.want, a.Info())
 		})
 	}
