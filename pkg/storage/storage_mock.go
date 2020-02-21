@@ -18,5 +18,4 @@ func (m *Mock) GetAccount(accountID uint64) (acc account2.Account, err error) {
 		return a, args.Error(1)
 	}
 	return acc, args.Error(1)
-
 }
