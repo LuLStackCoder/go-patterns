@@ -9,8 +9,8 @@ const (
 	ReplenishmentMinLimit = 1
 )
 
-// Account implements possibility to change the account balance
-type Account = interface {
+// Account represent an interface to change the account balance
+type Account interface {
 	AddToBalance(amount uint64) error
 	SubFromBalance(amount uint64) error
 	Info() string

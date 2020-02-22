@@ -6,18 +6,20 @@ import (
 
 	`github.com/LuLStackCoder/go-patterns/pkg/account`
 	`github.com/LuLStackCoder/go-patterns/pkg/facade`
-	`github.com/LuLStackCoder/go-patterns/pkg/storage`
+	`github.com/LuLStackCoder/go-patterns/pkg/models`
 )
 
-func main() {
-	var accounts = map[uint64]account.Account{
+var (
+	accounts = models.Accounts{
 		0: account.NewAccount(0, "JamesBond", "427623499434", "221", 450),
 		1: account.NewAccount(1, "AlexMercer", "427623452142", "772", 1200),
 		2: account.NewAccount(2, "EdsgerDijkstra", "427621234151", "355", 3400),
 		3: account.NewAccount(3, "AlanTuring", "42762948753743", "987", 5000),
 	}
-	var newStorage = storage.NewStorage(accounts)
-	var paymentSystem = facade.NewPayment(newStorage)
+)
+
+func main() {
+	var paymentSystem = facade.NewPayment(accounts)
 	var infoId0, errId0 = paymentSystem.GetInfo(0)
 	if errId0 == nil {
 		fmt.Println(infoId0)

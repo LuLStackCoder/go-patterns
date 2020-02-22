@@ -5,7 +5,7 @@ import (
 	`testing`
 
 	account2 `github.com/LuLStackCoder/go-patterns/pkg/account`
-	storage2 `github.com/LuLStackCoder/go-patterns/pkg/storage`
+	models2 `github.com/LuLStackCoder/go-patterns/pkg/models`
 )
 
 const (
@@ -38,19 +38,14 @@ var (
 	badSubError  = fmt.Errorf("not enough money on wallet")
 	badIdError   = fmt.Errorf("id doesn't exist in account storage")
 	accountById1 = account2.NewAccount(1, "AlexMercer", "427623452142", "772", 1200)
+	accounts = models2.Accounts{
+		1: account2.NewAccount(1, "AlexMercer", "427623452142", "772", 1200),
+	}
 )
-
-type fields struct {
-	storage storage
-}
-type args struct {
-	accountID uint64
-	amount    uint64
-}
 
 func TestPaymentGetInfo(t *testing.T) {
 	type fields struct {
-		storage storage
+		accounts models2.Accounts
 	}
 	type args struct {
 		accountID uint64
@@ -79,11 +74,7 @@ func TestPaymentGetInfo(t *testing.T) {
 			accountMock := new(account2.Mock)
 			accountMock.On(methodInfo).Return(infoId1).Once()
 
-			storageMock := new(storage2.Mock)
-			storageMock.On(methodGetAccount, successID).Return(accountById1, nil).Once()
-			storageMock.On(methodGetAccount, failID).Return(nil, badIdError).Once()
-
-			p := NewPayment(storageMock)
+			p := NewPayment(accounts)
 			got, err := p.GetInfo(tt.args.accountID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetInfo() error = %v, wantErr %v", err, tt.wantErr)
@@ -97,6 +88,13 @@ func TestPaymentGetInfo(t *testing.T) {
 }
 
 func TestPaymentCredit(t *testing.T) {
+	type fields struct {
+		storage models2.Accounts
+	}
+	type args struct {
+		accountID uint64
+		amount    uint64
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -124,11 +122,7 @@ func TestPaymentCredit(t *testing.T) {
 			accountMock.On(methodAddToBalance, successAddAmount).Return(nil).Once()
 			accountMock.On(methodAddToBalance, failAddAmount).Return(badAddError).Once()
 
-			storageMock := new(storage2.Mock)
-			storageMock.On(methodGetAccount, successID).Return(accountById1, nil).Once()
-			storageMock.On(methodGetAccount, failID).Return(nil, badIdError).Once()
-
-			p := NewPayment(storageMock)
+			p := NewPayment(accounts)
 			if err := p.Credit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("Credit() error = %v, wantErr %v", err, tt.wantErr)
 			}
@@ -137,6 +131,13 @@ func TestPaymentCredit(t *testing.T) {
 }
 
 func TestPaymentDebit(t *testing.T) {
+	type fields struct {
+		storage models2.Accounts
+	}
+	type args struct {
+		accountID uint64
+		amount    uint64
+	}
 	tests := []struct {
 		name    string
 		args    args
@@ -164,11 +165,7 @@ func TestPaymentDebit(t *testing.T) {
 			accountMock.On(methodSubFromBalance, successSubAmount).Return(nil).Once()
 			accountMock.On(methodSubFromBalance, failSubAmount).Return(badSubError).Once()
 
-			storageMock := new(storage2.Mock)
-			storageMock.On(methodGetAccount, successID).Return(accountById1, nil).Once()
-			storageMock.On(methodGetAccount, failID).Return(nil, badIdError).Once()
-
-			p := NewPayment(storageMock)
+			p := NewPayment(accounts)
 			if err := p.Debit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("Debit() error = %v, wantErr %v", err, tt.wantErr)
 			}

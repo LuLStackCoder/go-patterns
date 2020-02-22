@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bce3c3c-b3a1-4ea2-81b5-02026d2c0fc1" name="Default Changelist" comment="" />
+    <list default="true" id="3bce3c3c-b3a1-4ea2-81b5-02026d2c0fc1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pkg/models/models.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/facade/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/facade/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/account/account.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/account/account.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/facade/facade.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/facade/facade_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/storage/storage.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/storage/storage_mock.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/storage/storage_test.go" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="244" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -32,6 +45,9 @@
     </option>
   </component>
   <component name="GOROOT" path="/usr/lib/go-1.12" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XyO2UBfL226FhC7q9mSJQempG8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -43,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
@@ -53,6 +69,24 @@
       <recent name="$PROJECT_DIR$/facade" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="TestPaymentGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="facadeapp" />
+      <working_directory value="$PROJECT_DIR$/pkg/facade" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/LuLStackCoder/go-patterns/pkg/facade" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestPaymentGetInfo$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestPaymentGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -61,14 +95,37 @@
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state x="500" y="452" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/70.27.2490.1413@70.27.2490.1413" timestamp="1582029756805" />
+    <state width="1199" height="371" key="GridCell.Tab.0.bottom" timestamp="1582393588442">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state width="1199" height="371" key="GridCell.Tab.0.bottom/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588442" />
+    <state width="1199" height="371" key="GridCell.Tab.0.center" timestamp="1582393588441">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state width="1199" height="371" key="GridCell.Tab.0.center/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588441" />
+    <state width="1199" height="371" key="GridCell.Tab.0.left" timestamp="1582393588440">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state width="1199" height="371" key="GridCell.Tab.0.left/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588440" />
+    <state width="1199" height="371" key="GridCell.Tab.0.right" timestamp="1582393588441">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state width="1199" height="371" key="GridCell.Tab.0.right/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588441" />
     <state x="181" y="368" width="1022" height="737" key="SettingsEditor" timestamp="1582029583156">
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state x="181" y="368" width="1022" height="737" key="SettingsEditor/70.27.2490.1413@70.27.2490.1413" timestamp="1582029583156" />
+    <state x="464" y="301" width="446" height="871" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1582390873208">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="464" y="301" width="446" height="871" key="com.goide.refactor.move.GoMoveDeclarationDialog/70.27.2490.1413@70.27.2490.1413" timestamp="1582390873208" />
     <state x="861" y="343" width="905" height="817" key="search.everywhere.popup" timestamp="1582032220870">
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state x="658" y="289" width="672" height="678" key="search.everywhere.popup/70.27.1850.1173@70.27.1850.1173" timestamp="1582014683456" />
     <state x="861" y="343" width="905" height="817" key="search.everywhere.popup/70.27.2490.1413@70.27.2490.1413" timestamp="1582032220870" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/go_patterns$TestPaymentGetInfo_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestPaymentGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582393588377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
