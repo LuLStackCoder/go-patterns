@@ -29,8 +29,3 @@ func (m *Mock) Jsonify(accountID uint64) (info []byte, err error) {
 	}
 	return info, args.Error(1)
 }
-
-// if a, ok := args.Get(0).(error); ok {
-// return a
-// }
-// return args.Error(0)

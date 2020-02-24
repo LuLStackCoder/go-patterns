@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3bce3c3c-b3a1-4ea2-81b5-02026d2c0fc1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/facade/facade_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/storage/storage_mock.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/storage/storage_mock.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/validator/validator_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/validator/validator_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +63,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/cmd" />
       <recent name="$PROJECT_DIR$/facade" />
     </key>
   </component>

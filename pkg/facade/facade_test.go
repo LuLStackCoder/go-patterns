@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	methodJsonify = "Jsonify"
-	methodAddToBalance   = "AddToBalance"
-	methodSubFromBalance = "SubFromBalance"
+	methodJsonify           = "Jsonify"
+	methodAddToBalance      = "AddToBalance"
+	methodSubFromBalance    = "SubFromBalance"
 	methodCheckCreditAmount = "CheckCreditAmount"
-	methodCheckDebitAmount = "CheckDebitAmount"
+	methodCheckDebitAmount  = "CheckDebitAmount"
 
 	successID uint64 = 1
 	failID    uint64 = 32
@@ -25,17 +25,17 @@ const (
 	successCreditAmount uint64 = 3000
 	failCreditAmount    uint64 = 1
 
-	successDebitAmount uint64 = 100
-	failDebitAmount    uint64 = 10000000
+	successDebitAmount  uint64 = 100
+	failDebitAmount     uint64 = 10000000
 	failDebitAcc1Amount uint64 = 5000
 )
 
 var (
-	badCreditError  = fmt.Errorf("amount exceeds the credit limit")
-	badDebitError = fmt.Errorf("amount exceeds the debit limit")
-	badSubError  = fmt.Errorf("not enough money on wallet")
-	badIdError   = fmt.Errorf("id doesn't exist in account storage")
-	accounts = map[uint64]models.Account{
+	badCreditError = fmt.Errorf("amount exceeds the credit limit")
+	badDebitError  = fmt.Errorf("amount exceeds the debit limit")
+	badSubError    = fmt.Errorf("not enough money on wallet")
+	badIdError     = fmt.Errorf("id doesn't exist in account storage")
+	accounts       = map[uint64]models.Account{
 		0: models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
 		1: models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
 		2: models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
