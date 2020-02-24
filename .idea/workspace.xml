@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bce3c3c-b3a1-4ea2-81b5-02026d2c0fc1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/models/account.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/storage/storage.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/storage/storage_mock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/storage/storage_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/validator/validator.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/validator/validator_mock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/validator/validator_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/facade/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/facade/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/account/account.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/account/account_mock.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/account/account_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/facade/facade.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/facade/facade_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/models/models.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="244" />
+    <option name="myElementSize" value="287" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -158,25 +144,25 @@
     </state>
     <state x="221" y="241" width="328" height="323" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1582557974006" />
     <state x="500" y="452" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/70.27.2490.1413@70.27.2490.1413" timestamp="1582029756805" />
-    <state width="1238" height="198" key="GridCell.Tab.0.bottom" timestamp="1582569087122">
+    <state width="1238" height="244" key="GridCell.Tab.0.bottom" timestamp="1582569319383">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="198" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582569087122" />
+    <state width="1238" height="244" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582569319383" />
     <state width="1199" height="371" key="GridCell.Tab.0.bottom/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588442" />
-    <state width="1238" height="198" key="GridCell.Tab.0.center" timestamp="1582569087120">
+    <state width="1238" height="244" key="GridCell.Tab.0.center" timestamp="1582569319383">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="198" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582569087120" />
+    <state width="1238" height="244" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582569319383" />
     <state width="1199" height="371" key="GridCell.Tab.0.center/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588441" />
-    <state width="1238" height="198" key="GridCell.Tab.0.left" timestamp="1582569087119">
+    <state width="1238" height="244" key="GridCell.Tab.0.left" timestamp="1582569319382">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="198" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582569087119" />
+    <state width="1238" height="244" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582569319382" />
     <state width="1199" height="371" key="GridCell.Tab.0.left/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588440" />
-    <state width="1238" height="198" key="GridCell.Tab.0.right" timestamp="1582569087121">
+    <state width="1238" height="244" key="GridCell.Tab.0.right" timestamp="1582569319383">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="198" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582569087121" />
+    <state width="1238" height="244" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582569319383" />
     <state width="1199" height="371" key="GridCell.Tab.0.right/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588441" />
     <state x="181" y="368" width="1022" height="737" key="SettingsEditor" timestamp="1582029583156">
       <screen x="70" y="27" width="2490" height="1413" />
@@ -197,6 +183,7 @@
     <state x="861" y="343" width="905" height="817" key="search.everywhere.popup/70.27.2490.1413@70.27.2490.1413" timestamp="1582032220870" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/go_patterns$TestPaymentDebit_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582569274944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/go_patterns$TestPaymentGetInfo_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestPaymentGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582393588377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
