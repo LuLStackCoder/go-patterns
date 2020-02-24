@@ -1,15 +1,14 @@
 package facade
 
-import (
-	`fmt`
+type storage interface {
+	AddToBalance(accountID, amount uint64) error
+	SubFromBalance(accountID, amount uint64) error
+	Jsonify(accountID uint64) ([]byte, error)
+}
 
-	`github.com/LuLStackCoder/go-patterns/pkg/models`
-)
-
-type account interface {
-	AddToBalance(amount uint64) error
-	SubFromBalance(amount uint64) error
-	Info() string
+type validator interface {
+	CheckCreditAmount(amount uint64) error
+	CheckDebitAmount(amount uint64) error
 }
 
 // Facade represent interface to credit/debit the specific account balance by id
@@ -20,28 +19,27 @@ type Facade interface {
 }
 
 type facade struct {
-	storage models.Accounts
+	storage   storage
+	validator validator
 }
 
 // Credit adds the amount to the certain account balance obtained from storage by id
-func (f *facade) Credit(accountID uint64, amount uint64) error {
-	var account, errGetAccount = f.getAccount(accountID)
-	if errGetAccount != nil {
-		return errGetAccount
+func (f *facade) Credit(accountID, amount uint64) error {
+	if errCheck := f.validator.CheckCreditAmount(amount); errCheck != nil {
+		return errCheck
 	}
-	if errAdd := account.AddToBalance(amount); errAdd != nil {
+	if errAdd := f.storage.AddToBalance(accountID, amount); errAdd != nil {
 		return errAdd
 	}
 	return nil
 }
 
 // Debit remove the amount to the certain account balance obtained from storage by id
-func (f *facade) Debit(accountID uint64, amount uint64) error {
-	var account, errGetAccount = f.getAccount(accountID)
-	if errGetAccount != nil {
-		return errGetAccount
+func (f *facade) Debit(accountID, amount uint64) error {
+	if errCheck := f.validator.CheckDebitAmount(amount); errCheck != nil {
+		return errCheck
 	}
-	if errSub := account.SubFromBalance(amount); errSub != nil {
+	if errSub := f.storage.SubFromBalance(accountID, amount); errSub != nil {
 		return errSub
 	}
 	return nil
@@ -49,26 +47,17 @@ func (f *facade) Debit(accountID uint64, amount uint64) error {
 
 // Get info about the certain accountID
 func (f *facade) GetInfo(accountID uint64) (string, error) {
-	var account, errGetAccount = f.getAccount(accountID)
-	if errGetAccount != nil {
-		return "", errGetAccount
+	var accInfo, errInfo = f.storage.Jsonify(accountID)
+	if errInfo != nil {
+		return "", errInfo
 	}
-	var jsonString = account.Info()
-	return jsonString, nil
+	return string(accInfo), nil
 }
 
-// getAccount returns account instance by id
-func (f *facade) getAccount(accountID uint64) (account, error) {
-	var reqAccount, ok = f.storage[accountID]
-	if !ok {
-		return nil, fmt.Errorf("id doesn't exist in account storage")
-	}
-	return reqAccount, nil
-}
-
-// NewPayment initializes the Facade
-func NewPayment(storage models.Accounts) Facade {
+// NewFacade initializes the Facade
+func NewFacade(storage storage, validator validator) *facade {
 	return &facade{
-		storage: storage,
+		storage:   storage,
+		validator: validator,
 	}
 }

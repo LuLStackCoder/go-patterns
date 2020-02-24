@@ -1,0 +1,36 @@
+package storage
+
+import (
+	`github.com/stretchr/testify/mock`
+)
+
+// Mock of storage
+type Mock struct {
+	mock.Mock
+}
+
+// AddToBalance ...
+func (m *Mock) AddToBalance(accountID, amount uint64) (errGet error) {
+	args := m.Called(accountID, amount)
+	return args.Error(0)
+}
+
+// SubFromBalance ...
+func (m *Mock) SubFromBalance(accountID, amount uint64) (errGet error) {
+	args := m.Called(accountID, amount)
+	return args.Error(0)
+}
+
+// Jsonify ...
+func (m *Mock) Jsonify(accountID uint64) (info []byte, err error) {
+	args := m.Called(accountID)
+	if a, ok := args.Get(0).([]byte); ok {
+		return a, args.Error(1)
+	}
+	return info, args.Error(1)
+}
+
+// if a, ok := args.Get(0).(error); ok {
+// return a
+// }
+// return args.Error(0)

@@ -1,52 +1,50 @@
 package facade
 
 import (
+	`encoding/json`
 	`fmt`
 	`testing`
 
-	account2 `github.com/LuLStackCoder/go-patterns/pkg/account`
-	models2 `github.com/LuLStackCoder/go-patterns/pkg/models`
+	`github.com/stretchr/testify/assert`
+
+	`github.com/LuLStackCoder/go-patterns/pkg/models`
+	storage2 `github.com/LuLStackCoder/go-patterns/pkg/storage`
+	validator2 `github.com/LuLStackCoder/go-patterns/pkg/validator`
 )
 
 const (
-	methodGetAccount = "GetAccount"
-
+	methodJsonify = "Jsonify"
 	methodAddToBalance   = "AddToBalance"
 	methodSubFromBalance = "SubFromBalance"
-	methodInfo           = "Info"
+	methodCheckCreditAmount = "CheckCreditAmount"
+	methodCheckDebitAmount = "CheckDebitAmount"
 
 	successID uint64 = 1
 	failID    uint64 = 32
 
-	successAddAmount uint64 = 3000
-	failAddAmount    uint64 = 0
+	successCreditAmount uint64 = 3000
+	failCreditAmount    uint64 = 1
 
-	successSubAmount uint64 = 100
-	failSubAmount    uint64 = 10000
-
-	infoId1 = `{
-	"accountID": 1,
-	"name": "AlexMercer",
-	"cardNumber": "427623452142",
-	"cvv": "772",
-	"balance": 1200
-}`
+	successDebitAmount uint64 = 100
+	failDebitAmount    uint64 = 10000000
+	failDebitAcc1Amount uint64 = 5000
 )
 
 var (
-	badAddError  = fmt.Errorf("amount exceeds the replenishment limit")
+	badCreditError  = fmt.Errorf("amount exceeds the credit limit")
+	badDebitError = fmt.Errorf("amount exceeds the debit limit")
 	badSubError  = fmt.Errorf("not enough money on wallet")
 	badIdError   = fmt.Errorf("id doesn't exist in account storage")
-	accountById1 = account2.NewAccount(1, "AlexMercer", "427623452142", "772", 1200)
-	accounts = models2.Accounts{
-		1: account2.NewAccount(1, "AlexMercer", "427623452142", "772", 1200),
+	accounts = map[uint64]models.Account{
+		0: models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
+		1: models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
+		2: models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
+		3: models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
 	}
+	infoId1, _ = json.Marshal(accounts[1])
 )
 
-func TestPaymentGetInfo(t *testing.T) {
-	type fields struct {
-		accounts models2.Accounts
-	}
+func TestFacadeGetInfo(t *testing.T) {
 	type args struct {
 		accountID uint64
 	}
@@ -59,7 +57,7 @@ func TestPaymentGetInfo(t *testing.T) {
 		{
 			name:    "TestInfoOk",
 			args:    args{1},
-			want:    infoId1,
+			want:    string(infoId1),
 			wantErr: false,
 		},
 		{
@@ -71,26 +69,26 @@ func TestPaymentGetInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			accountMock := new(account2.Mock)
-			accountMock.On(methodInfo).Return(infoId1).Once()
+			storageMock := new(storage2.Mock)
+			storageMock.On(methodJsonify, successID).Return(infoId1, nil).Once()
+			storageMock.On(methodJsonify, failID).Return(nil, badIdError).Once()
 
-			p := NewPayment(accounts)
-			got, err := p.GetInfo(tt.args.accountID)
+			validatorMock := new(validator2.Mock)
+			validatorMock.On(methodCheckCreditAmount, successID).Return(infoId1, nil).Once()
+			validatorMock.On(methodCheckDebitAmount, failID).Return(nil, badIdError).Once()
+
+			f := NewFacade(storageMock, validatorMock)
+			got, err := f.GetInfo(tt.args.accountID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetInfo() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if got != tt.want {
-				t.Errorf("GetInfo() got = %v, want %v", got, tt.want)
-			}
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }
 
-func TestPaymentCredit(t *testing.T) {
-	type fields struct {
-		storage models2.Accounts
-	}
+func TestFacadeCredit(t *testing.T) {
 	type args struct {
 		accountID uint64
 		amount    uint64
@@ -101,28 +99,32 @@ func TestPaymentCredit(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "TestAddOkAmount",
-			args:    args{successID, successAddAmount},
+			name:    "TestCreditGoodId",
+			args:    args{successID, successCreditAmount},
 			wantErr: false,
 		},
 		{
-			name:    "TestAddBadAmount",
-			args:    args{successID, failAddAmount},
+			name:    "TestCreditBadId",
+			args:    args{failID, successCreditAmount},
 			wantErr: true,
 		},
 		{
-			name:    "TestAddBadId",
-			args:    args{failID, successAddAmount},
+			name:    "TestCreditBadAmount",
+			args:    args{successID, failCreditAmount},
 			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			accountMock := new(account2.Mock)
-			accountMock.On(methodAddToBalance, successAddAmount).Return(nil).Once()
-			accountMock.On(methodAddToBalance, failAddAmount).Return(badAddError).Once()
+			storageMock := new(storage2.Mock)
+			storageMock.On(methodAddToBalance, successID, successCreditAmount).Return(nil).Once()
+			storageMock.On(methodAddToBalance, failID, successCreditAmount).Return(badIdError).Once()
 
-			p := NewPayment(accounts)
+			validatorMock := new(validator2.Mock)
+			validatorMock.On(methodCheckCreditAmount, successCreditAmount).Return(nil).Once()
+			validatorMock.On(methodCheckCreditAmount, failCreditAmount).Return(badCreditError).Once()
+
+			p := NewFacade(storageMock, validatorMock)
 			if err := p.Credit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("Credit() error = %v, wantErr %v", err, tt.wantErr)
 			}
@@ -131,9 +133,6 @@ func TestPaymentCredit(t *testing.T) {
 }
 
 func TestPaymentDebit(t *testing.T) {
-	type fields struct {
-		storage models2.Accounts
-	}
 	type args struct {
 		accountID uint64
 		amount    uint64
@@ -144,28 +143,39 @@ func TestPaymentDebit(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name:    "TestSubOkAmount",
-			args:    args{successID, successSubAmount},
+			name:    "TestDebitGoodId",
+			args:    args{successID, successDebitAmount},
 			wantErr: false,
 		},
 		{
-			name:    "TestSubBadAmount",
-			args:    args{successID, failSubAmount},
+			name:    "TestDebitBadId",
+			args:    args{failID, successDebitAmount},
 			wantErr: true,
 		},
 		{
-			name:    "TestSubBadId",
-			args:    args{failID, successSubAmount},
+			name:    "TestDebitBadAmount",
+			args:    args{successID, failDebitAmount},
+			wantErr: true,
+		},
+		{
+			name:    "TestDebitBadAcc1Amount",
+			args:    args{successID, failDebitAcc1Amount},
 			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			accountMock := new(account2.Mock)
-			accountMock.On(methodSubFromBalance, successSubAmount).Return(nil).Once()
-			accountMock.On(methodSubFromBalance, failSubAmount).Return(badSubError).Once()
+			storageMock := new(storage2.Mock)
+			storageMock.On(methodSubFromBalance, successID, successDebitAmount).Return(nil).Once()
+			storageMock.On(methodSubFromBalance, failID, successDebitAmount).Return(badIdError).Once()
+			storageMock.On(methodSubFromBalance, successID, failDebitAcc1Amount).Return(badSubError).Once()
 
-			p := NewPayment(accounts)
+			validatorMock := new(validator2.Mock)
+			validatorMock.On(methodCheckDebitAmount, successDebitAmount).Return(nil).Once()
+			validatorMock.On(methodCheckDebitAmount, failDebitAcc1Amount).Return(nil).Once()
+			validatorMock.On(methodCheckDebitAmount, failDebitAmount).Return(badDebitError).Once()
+
+			p := NewFacade(storageMock, validatorMock)
 			if err := p.Debit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
 				t.Errorf("Debit() error = %v, wantErr %v", err, tt.wantErr)
 			}
