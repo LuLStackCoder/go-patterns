@@ -2,6 +2,8 @@ package validator
 
 import (
 	`testing`
+
+	`github.com/stretchr/testify/assert`
 )
 
 const (
@@ -18,65 +20,63 @@ func TestValidatorCheckCreditAmount(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		wantErr bool
+		want bool
 	}{
 		{
 			name:    "TestBadMinAmount",
 			args:    args{0},
-			wantErr: true,
+			want: false,
 		},
 		{
 			name:    "TestBadMaxAmount",
 			args:    args{1000000},
-			wantErr: true,
+			want: false,
 		},
 		{
 			name:    "TestGoodAmount",
 			args:    args{3000},
-			wantErr: false,
+			want: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			v := NewValidator(CreditMaxLimit, CreditMinLimit, DebitMaxLimit, DebitMinLimit)
-			if err := v.CheckCreditAmount(tt.args.amount); (err != nil) != tt.wantErr {
-				t.Errorf("CheckCreditAmount() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			checkRes := v.CheckCreditAmount(tt.args.amount)
+			assert.Equal(t, tt.want, checkRes)
 		})
 	}
 }
 
-func Test_validator_CheckDebitAmount(t *testing.T) {
+func TestValidatorCheckDebitAmount(t *testing.T) {
 	type args struct {
 		amount uint64
 	}
 	tests := []struct {
 		name    string
 		args    args
-		wantErr bool
+		want bool
 	}{
 		{
 			name:    "TestBadMinAmount",
 			args:    args{0},
-			wantErr: true,
+			want: false,
 		},
 		{
 			name:    "TestBadMaxAmount",
 			args:    args{1000000},
-			wantErr: true,
+			want: false,
 		},
 		{
 			name:    "TestGoodAmount",
 			args:    args{3000},
-			wantErr: false,
+			want: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			v := NewValidator(CreditMaxLimit, CreditMinLimit, DebitMaxLimit, DebitMinLimit)
-			if err := v.CheckDebitAmount(tt.args.amount); (err != nil) != tt.wantErr {
-				t.Errorf("CheckDebitAmount() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			checkRes := v.CheckDebitAmount(tt.args.amount)
+			assert.Equal(t, tt.want, checkRes)
 		})
 	}
 }

@@ -15,13 +15,13 @@ type Storage interface {
 }
 
 type storage struct {
-	accounts map[uint64]models.Account
+	accounts map[uint64]*models.Account
 }
 
 // AddToBalance adds the amount to the account balance
-func (s *storage) AddToBalance(accountID, amount uint64) (errGet error) {
-	reqAccount, errGet := s.getAccount(accountID)
-	if errGet != nil {
+func (s *storage) AddToBalance(accountID, amount uint64) (err error) {
+	var reqAccount *models.Account
+	if reqAccount, err = s.getAccount(accountID); err != nil {
 		return fmt.Errorf("id doesn't exist in account storage")
 	}
 	reqAccount.Balance += amount
@@ -30,9 +30,9 @@ func (s *storage) AddToBalance(accountID, amount uint64) (errGet error) {
 }
 
 // SubFromBalance subtracts the amount from the account balance
-func (s *storage) SubFromBalance(accountID, amount uint64) (errGet error) {
-	reqAccount, errGet := s.getAccount(accountID)
-	if errGet != nil {
+func (s *storage) SubFromBalance(accountID, amount uint64) (err error) {
+	var reqAccount *models.Account
+	if reqAccount, err = s.getAccount(accountID); err != nil {
 		return fmt.Errorf("id doesn't exist in account storage")
 	}
 	if reqAccount.Balance < amount {
@@ -44,29 +44,26 @@ func (s *storage) SubFromBalance(accountID, amount uint64) (errGet error) {
 }
 
 // Return Info in json-[]byte
-func (s *storage) Jsonify(accountID uint64) ([]byte, error) {
-	var reqAccount, errGet = s.getAccount(accountID)
-	if errGet != nil {
-		return nil, fmt.Errorf("id doesn't exist in account storage")
+func (s *storage) Jsonify(accountID uint64) (accInfo []byte, err error) {
+	var reqAccount *models.Account
+	if reqAccount, err = s.getAccount(accountID); err != nil {
+		return
 	}
-	var accInfo, errMarsh = json.Marshal(reqAccount)
-	if errMarsh != nil {
-		return nil, errMarsh
-	}
-	return accInfo, nil
+	return json.Marshal(reqAccount)
 }
 
 // getAccount returns account instance by id
-func (s *storage) getAccount(accountID uint64) (models.Account, error) {
-	var reqAccount, ok = s.accounts[accountID]
-	if !ok {
-		return reqAccount, fmt.Errorf("id doesn't exist in account storage")
+func (s *storage) getAccount(accountID uint64) (reqAccount *models.Account, err error) {
+	if _, ok := s.accounts[accountID]; !ok {
+		err = fmt.Errorf("id doesn't exist in account storage")
+		return
 	}
-	return reqAccount, nil
+	reqAccount = s.accounts[accountID]
+	return
 }
 
 // NewStorage initializes the storage
-func NewStorage(accounts map[uint64]models.Account) Storage {
+func NewStorage(accounts map[uint64]*models.Account) Storage {
 	return &storage{
 		accounts: accounts,
 	}

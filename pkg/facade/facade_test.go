@@ -8,8 +8,8 @@ import (
 	`github.com/stretchr/testify/assert`
 
 	`github.com/LuLStackCoder/go-patterns/pkg/models`
-	storage2 `github.com/LuLStackCoder/go-patterns/pkg/storage`
-	validator2 `github.com/LuLStackCoder/go-patterns/pkg/validator`
+	`github.com/LuLStackCoder/go-patterns/pkg/storage`
+	`github.com/LuLStackCoder/go-patterns/pkg/validator`
 )
 
 const (
@@ -31,8 +31,6 @@ const (
 )
 
 var (
-	badCreditError = fmt.Errorf("amount exceeds the credit limit")
-	badDebitError  = fmt.Errorf("amount exceeds the debit limit")
 	badSubError    = fmt.Errorf("not enough money on wallet")
 	badIdError     = fmt.Errorf("id doesn't exist in account storage")
 	accounts       = map[uint64]models.Account{
@@ -69,13 +67,11 @@ func TestFacadeGetInfo(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			storageMock := new(storage2.Mock)
+			storageMock := new(storage.Mock)
 			storageMock.On(methodJsonify, successID).Return(infoId1, nil).Once()
 			storageMock.On(methodJsonify, failID).Return(nil, badIdError).Once()
 
-			validatorMock := new(validator2.Mock)
-			validatorMock.On(methodCheckCreditAmount, successID).Return(infoId1, nil).Once()
-			validatorMock.On(methodCheckDebitAmount, failID).Return(nil, badIdError).Once()
+			validatorMock := new(validator.Mock)
 
 			f := NewFacade(storageMock, validatorMock)
 			got, err := f.GetInfo(tt.args.accountID)
@@ -116,13 +112,13 @@ func TestFacadeCredit(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			storageMock := new(storage2.Mock)
+			storageMock := new(storage.Mock)
 			storageMock.On(methodAddToBalance, successID, successCreditAmount).Return(nil).Once()
 			storageMock.On(methodAddToBalance, failID, successCreditAmount).Return(badIdError).Once()
 
-			validatorMock := new(validator2.Mock)
-			validatorMock.On(methodCheckCreditAmount, successCreditAmount).Return(nil).Once()
-			validatorMock.On(methodCheckCreditAmount, failCreditAmount).Return(badCreditError).Once()
+			validatorMock := new(validator.Mock)
+			validatorMock.On(methodCheckCreditAmount, successCreditAmount).Return(true).Once()
+			validatorMock.On(methodCheckCreditAmount, failCreditAmount).Return(false).Once()
 
 			p := NewFacade(storageMock, validatorMock)
 			if err := p.Credit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
@@ -165,15 +161,15 @@ func TestPaymentDebit(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			storageMock := new(storage2.Mock)
+			storageMock := new(storage.Mock)
 			storageMock.On(methodSubFromBalance, successID, successDebitAmount).Return(nil).Once()
 			storageMock.On(methodSubFromBalance, failID, successDebitAmount).Return(badIdError).Once()
 			storageMock.On(methodSubFromBalance, successID, failDebitAcc1Amount).Return(badSubError).Once()
 
-			validatorMock := new(validator2.Mock)
-			validatorMock.On(methodCheckDebitAmount, successDebitAmount).Return(nil).Once()
-			validatorMock.On(methodCheckDebitAmount, failDebitAcc1Amount).Return(nil).Once()
-			validatorMock.On(methodCheckDebitAmount, failDebitAmount).Return(badDebitError).Once()
+			validatorMock := new(validator.Mock)
+			validatorMock.On(methodCheckDebitAmount, successDebitAmount).Return(true).Once()
+			validatorMock.On(methodCheckDebitAmount, failDebitAcc1Amount).Return(true).Once()
+			validatorMock.On(methodCheckDebitAmount, failDebitAmount).Return(false).Once()
 
 			p := NewFacade(storageMock, validatorMock)
 			if err := p.Debit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {

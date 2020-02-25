@@ -10,22 +10,22 @@ type Mock struct {
 }
 
 // AddToBalance ...
-func (m *Mock) AddToBalance(accountID, amount uint64) (errGet error) {
+func (m *Mock) AddToBalance(accountID, amount uint64) (err error) {
 	args := m.Called(accountID, amount)
 	return args.Error(0)
 }
 
 // SubFromBalance ...
-func (m *Mock) SubFromBalance(accountID, amount uint64) (errGet error) {
+func (m *Mock) SubFromBalance(accountID, amount uint64) (err error) {
 	args := m.Called(accountID, amount)
 	return args.Error(0)
 }
 
 // Jsonify ...
-func (m *Mock) Jsonify(accountID uint64) (info []byte, err error) {
+func (m *Mock) Jsonify(accountID uint64) (accInfo []byte, err error) {
 	args := m.Called(accountID)
 	if a, ok := args.Get(0).([]byte); ok {
 		return a, args.Error(1)
 	}
-	return info, args.Error(1)
+	return accInfo, args.Error(1)
 }

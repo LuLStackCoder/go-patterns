@@ -1,14 +1,18 @@
 package facade
 
-type storage interface {
+import (
+	`fmt`
+)
+
+type storageFacade interface {
 	AddToBalance(accountID, amount uint64) error
 	SubFromBalance(accountID, amount uint64) error
 	Jsonify(accountID uint64) ([]byte, error)
 }
 
-type validator interface {
-	CheckCreditAmount(amount uint64) error
-	CheckDebitAmount(amount uint64) error
+type validatorFacade interface {
+	CheckCreditAmount(amount uint64) bool
+	CheckDebitAmount(amount uint64) bool
 }
 
 // Facade represent interface to credit/debit the specific account balance by id
@@ -19,43 +23,38 @@ type Facade interface {
 }
 
 type facade struct {
-	storage   storage
-	validator validator
+	storage   storageFacade
+	validator validatorFacade
 }
 
 // Credit adds the amount to the certain account balance obtained from storage by id
-func (f *facade) Credit(accountID, amount uint64) error {
-	if errCheck := f.validator.CheckCreditAmount(amount); errCheck != nil {
-		return errCheck
+func (f *facade) Credit(accountID, amount uint64) (err error) {
+	if ok := f.validator.CheckCreditAmount(amount); !ok {
+		return fmt.Errorf("amount exceeds the credit limit")
 	}
-	if errAdd := f.storage.AddToBalance(accountID, amount); errAdd != nil {
-		return errAdd
-	}
-	return nil
+	return f.storage.AddToBalance(accountID, amount)
 }
 
 // Debit remove the amount to the certain account balance obtained from storage by id
-func (f *facade) Debit(accountID, amount uint64) error {
-	if errCheck := f.validator.CheckDebitAmount(amount); errCheck != nil {
-		return errCheck
+func (f *facade) Debit(accountID, amount uint64) (err error) {
+	if ok := f.validator.CheckDebitAmount(amount); !ok {
+		return fmt.Errorf("amount exceeds the debit limit")
 	}
-	if errSub := f.storage.SubFromBalance(accountID, amount); errSub != nil {
-		return errSub
-	}
-	return nil
+	return f.storage.SubFromBalance(accountID, amount)
 }
 
 // Get info about the certain accountID
-func (f *facade) GetInfo(accountID uint64) (string, error) {
-	var accInfo, errInfo = f.storage.Jsonify(accountID)
-	if errInfo != nil {
-		return "", errInfo
+func (f *facade) GetInfo(accountID uint64) (accInfo string, err error) {
+	var byteInfo []byte
+	if byteInfo, err = f.storage.Jsonify(accountID); err != nil {
+		return "", err
 	}
-	return string(accInfo), nil
+	accInfo = string(byteInfo)
+	return
 }
 
 // NewFacade initializes the Facade
-func NewFacade(storage storage, validator validator) *facade {
+func NewFacade(storage storageFacade, validator validatorFacade) *facade {
 	return &facade{
 		storage:   storage,
 		validator: validator,

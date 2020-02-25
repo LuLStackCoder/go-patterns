@@ -10,13 +10,13 @@ type Mock struct {
 }
 
 // CheckCreditAmount ...
-func (m *Mock) CheckCreditAmount(amount uint64) error {
+func (m *Mock) CheckCreditAmount(amount uint64) bool {
 	args := m.Called(amount)
-	return args.Error(0)
+	return args.Bool(0)
 }
 
 // CheckDebitAmount check amount inside debit limits
-func (m *Mock) CheckDebitAmount(amount uint64) error {
+func (m *Mock) CheckDebitAmount(amount uint64) bool {
 	args := m.Called(amount)
-	return args.Error(0)
+	return args.Bool(0)
 }

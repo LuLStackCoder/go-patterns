@@ -10,18 +10,21 @@ import (
 )
 
 var (
-	accounts = map[uint64]models.Account{
-		0: models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
-		1: models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
-		2: models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
-		3: models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
+	accounts = map[uint64]*models.Account{
+		0: &models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
+		1: &models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
+		2: &models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
+		3: &models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
+	}
+	accountsChanged = map[uint64]*models.Account{
+		0: &models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 350},
+		1: &models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 6200},
+		2: &models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
+		3: &models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
 	}
 )
 
 func TestStorageJsonify(t *testing.T) {
-	type fields struct {
-		accounts map[uint64]models.Account
-	}
 	type args struct {
 		accountID uint64
 	}
@@ -46,10 +49,7 @@ func TestStorageJsonify(t *testing.T) {
 			s := NewStorage(accounts)
 			got, err := s.Jsonify(tt.args.accountID)
 			want, _ := json.Marshal(accounts[tt.args.accountID])
-			if (err != nil) != tt.wantErr {
-				t.Errorf("Jsonify() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
+			assert.Equal(t, tt.wantErr, err != nil)
 			if err == nil {
 				assert.Equal(t, want, got)
 			}
@@ -58,9 +58,6 @@ func TestStorageJsonify(t *testing.T) {
 }
 
 func TestStorageAddToBalance(t *testing.T) {
-	type fields struct {
-		accounts map[uint64]models.Account
-	}
 	type args struct {
 		accountID uint64
 		amount    uint64
@@ -84,17 +81,16 @@ func TestStorageAddToBalance(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewStorage(accounts)
-			if err := s.AddToBalance(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
-				t.Errorf("AddToBalance() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			err := s.AddToBalance(tt.args.accountID, tt.args.amount)
+			assert.Equal(t, tt.wantErr, err != nil)
+			want := accountsChanged[tt.args.accountID]
+			got := accounts[tt.args.accountID]
+			assert.Equal(t, want, got)
 		})
 	}
 }
 
 func TestStorageSubFromBalance(t *testing.T) {
-	type fields struct {
-		accounts map[uint64]models.Account
-	}
 	type args struct {
 		accountID uint64
 		amount    uint64
@@ -123,9 +119,11 @@ func TestStorageSubFromBalance(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			s := NewStorage(accounts)
-			if err := s.SubFromBalance(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
-				t.Errorf("AddToBalance() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			err := s.SubFromBalance(tt.args.accountID, tt.args.amount)
+			assert.Equal(t, tt.wantErr, err != nil)
+			want := accountsChanged[tt.args.accountID]
+			got := accounts[tt.args.accountID]
+			assert.Equal(t, want, got)
 		})
 	}
 }

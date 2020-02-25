@@ -1,13 +1,9 @@
 package validator
 
-import (
-	`fmt`
-)
-
 // Validator implements possibility to check amount correctness
 type Validator interface {
-	CheckCreditAmount(amount uint64) error
-	CheckDebitAmount(amount uint64) error
+	CheckCreditAmount(amount uint64) bool
+	CheckDebitAmount(amount uint64) bool
 }
 
 type validator struct {
@@ -18,19 +14,13 @@ type validator struct {
 }
 
 // CheckCreditAmount check amount inside credit limits
-func (v *validator) CheckCreditAmount(amount uint64) error {
-	if v.creditMinLimit > amount || amount > v.creditMaxLimit {
-		return fmt.Errorf("amount exceeds the credit limit")
-	}
-	return nil
+func (v *validator) CheckCreditAmount(amount uint64) bool {
+	return v.creditMinLimit < amount && amount < v.creditMaxLimit
 }
 
 // CheckDebitAmount check amount inside debit limits
-func (v *validator) CheckDebitAmount(amount uint64) error {
-	if v.debitMinLimit > amount || amount > v.debitMaxLimit {
-		return fmt.Errorf("amount exceeds the debit limit")
-	}
-	return nil
+func (v *validator) CheckDebitAmount(amount uint64) bool {
+	return v.debitMinLimit < amount && amount < v.debitMaxLimit
 }
 
 // NewValidator initializes the validator
