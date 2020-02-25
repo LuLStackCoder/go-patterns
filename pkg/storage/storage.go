@@ -3,6 +3,7 @@ package storage
 import (
 	`encoding/json`
 	`fmt`
+	`sync`
 
 	`github.com/LuLStackCoder/go-patterns/pkg/models`
 )
@@ -15,6 +16,7 @@ type Storage interface {
 }
 
 type storage struct {
+	mx       sync.RWMutex
 	accounts map[uint64]*models.Account
 }
 
@@ -54,6 +56,8 @@ func (s *storage) Jsonify(accountID uint64) (accInfo []byte, err error) {
 
 // getAccount returns account instance by id
 func (s *storage) getAccount(accountID uint64) (reqAccount *models.Account, err error) {
+	s.mx.RLock()
+	defer s.mx.RUnlock()
 	if _, ok := s.accounts[accountID]; !ok {
 		err = fmt.Errorf("id doesn't exist in account storage")
 		return

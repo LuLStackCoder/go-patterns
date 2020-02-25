@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	methodJsonify           = "Jsonify"
-	methodAddToBalance      = "AddToBalance"
-	methodSubFromBalance    = "SubFromBalance"
-	methodCheckCreditAmount = "CheckCreditAmount"
-	methodCheckDebitAmount  = "CheckDebitAmount"
+	methodJsonify        = "Jsonify"
+	methodAddToBalance   = "AddToBalance"
+	methodSubFromBalance = "SubFromBalance"
+
+	methodCheckDebitAmount = "CheckDebitAmount"
 
 	successID uint64 = 1
 	failID    uint64 = 32
@@ -31,13 +31,13 @@ const (
 )
 
 var (
-	badSubError    = fmt.Errorf("not enough money on wallet")
-	badIdError     = fmt.Errorf("id doesn't exist in account storage")
-	accounts       = map[uint64]models.Account{
-		0: models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
-		1: models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
-		2: models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
-		3: models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
+	badSubError = fmt.Errorf("not enough money on wallet")
+	badIdError  = fmt.Errorf("id doesn't exist in account storage")
+	accounts    = map[uint64]*models.Account{
+		0: {AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
+		1: {AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
+		2: {AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
+		3: {AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
 	}
 	infoId1, _ = json.Marshal(accounts[1])
 )
@@ -117,18 +117,17 @@ func TestFacadeCredit(t *testing.T) {
 			storageMock.On(methodAddToBalance, failID, successCreditAmount).Return(badIdError).Once()
 
 			validatorMock := new(validator.Mock)
-			validatorMock.On(methodCheckCreditAmount, successCreditAmount).Return(true).Once()
-			validatorMock.On(methodCheckCreditAmount, failCreditAmount).Return(false).Once()
+			validatorMock.On("CheckCreditAmount", successCreditAmount).Return(true).Once()
+			validatorMock.On("CheckCreditAmount", failCreditAmount).Return(false).Once()
 
 			p := NewFacade(storageMock, validatorMock)
-			if err := p.Credit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
-				t.Errorf("Credit() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			err := p.Credit(tt.args.accountID, tt.args.amount)
+			assert.Equal(t, tt.wantErr, err != nil)
 		})
 	}
 }
 
-func TestPaymentDebit(t *testing.T) {
+func TestFacadeDebit(t *testing.T) {
 	type args struct {
 		accountID uint64
 		amount    uint64
@@ -172,9 +171,8 @@ func TestPaymentDebit(t *testing.T) {
 			validatorMock.On(methodCheckDebitAmount, failDebitAmount).Return(false).Once()
 
 			p := NewFacade(storageMock, validatorMock)
-			if err := p.Debit(tt.args.accountID, tt.args.amount); (err != nil) != tt.wantErr {
-				t.Errorf("Debit() error = %v, wantErr %v", err, tt.wantErr)
-			}
+			err := p.Debit(tt.args.accountID, tt.args.amount)
+			assert.Equal(t, tt.wantErr, err != nil)
 		})
 	}
 }

@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef321733-cf23-4dc1-85bb-f24d333c017a" name="Default Changelist" comment="">
+    <list default="true" id="54d601a0-3762-4e09-99a8-f8aea2fa4cd4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/artem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/artem.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/facadeapp.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Facade.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/facade/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/facade/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/facade/facade.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/facade/facade_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/facade/facade_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/storage/storage.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/storage/storage.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/storage/storage_mock.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/storage/storage_mock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/storage/storage_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/storage/storage_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/validator/validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/validator/validator.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/validator/validator_mock.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/validator/validator_mock.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/validator/validator_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/validator/validator_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +18,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" path="/usr/lib/go-1.12" />
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="417" />
+  </component>
+  <component name="GOROOT" path="/usr/local/Cellar/go/1.13.7/libexec" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1YIQ2GS0bhbt5G7TVWPe97mwn26" />
+  <component name="ProjectId" id="1YJVSTP0p5ff0yni9inyYHPy6S7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -36,43 +36,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
   </component>
-  <component name="RunManager" selected="Go Test.TestFacadeCredit in github.com/LuLStackCoder/go-patterns/pkg/facade">
-    <configuration name="TestFacadeCredit in github.com/LuLStackCoder/go-patterns/pkg/facade" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="go-patterns" />
-      <working_directory value="$PROJECT_DIR$/pkg/facade" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/LuLStackCoder/go-patterns/pkg/facade" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestFacadeCredit$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestFacadeGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="go-patterns" />
-      <working_directory value="$PROJECT_DIR$/pkg/facade" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/LuLStackCoder/go-patterns/pkg/facade" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestFacadeGetInfo$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="go-patterns" />
-      <working_directory value="$PROJECT_DIR$/pkg/facade" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/LuLStackCoder/go-patterns/pkg/facade" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestPaymentDebit$" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Go Test.go test github.com/LuLStackCoder/go-patterns/pkg/validator">
     <configuration name="go test github.com/LuLStackCoder/go-patterns/pkg/facade" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="go-patterns" />
       <working_directory value="$PROJECT_DIR$/pkg/facade" />
@@ -93,11 +59,19 @@
       <filePath value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="go test github.com/LuLStackCoder/go-patterns/pkg/validator" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-patterns" />
+      <working_directory value="$PROJECT_DIR$/pkg/validator" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/LuLStackCoder/go-patterns/pkg/validator" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestFacadeCredit in github.com/LuLStackCoder/go-patterns/pkg/facade" />
-        <item itemvalue="Go Test.TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade" />
-        <item itemvalue="Go Test.TestFacadeGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade" />
+        <item itemvalue="Go Test.go test github.com/LuLStackCoder/go-patterns/pkg/validator" />
         <item itemvalue="Go Test.go test github.com/LuLStackCoder/go-patterns/pkg/facade" />
         <item itemvalue="Go Test.go test github.com/LuLStackCoder/go-patterns/pkg/storage" />
       </list>
@@ -107,36 +81,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="274" y="395" width="800" height="684" key="#GOROOT" timestamp="1582627452166">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state x="240" y="65" key="#GOROOT" timestamp="1582660712206">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="274" y="395" width="800" height="684" key="#GOROOT/70.27.2490.1413@70.27.2490.1413" timestamp="1582627452166" />
-    <state x="454" y="482" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582638801475">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state x="240" y="65" key="#GOROOT/0.0.1280.800@0.0.1280.800" timestamp="1582660712206" />
+    <state width="1238" height="193" key="GridCell.Tab.0.bottom" timestamp="1582665365930">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="454" y="482" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.27.2490.1413@70.27.2490.1413" timestamp="1582638801475" />
-    <state width="1189" height="370" key="GridCell.Tab.0.bottom" timestamp="1582650774063">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state width="1238" height="193" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582665365930" />
+    <state width="1238" height="193" key="GridCell.Tab.0.center" timestamp="1582665365929">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1189" height="370" key="GridCell.Tab.0.bottom/70.27.2490.1413@70.27.2490.1413" timestamp="1582650774063" />
-    <state width="1189" height="370" key="GridCell.Tab.0.center" timestamp="1582650774062">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state width="1238" height="193" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582665365929" />
+    <state width="1238" height="193" key="GridCell.Tab.0.left" timestamp="1582665365928">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1189" height="370" key="GridCell.Tab.0.center/70.27.2490.1413@70.27.2490.1413" timestamp="1582650774062" />
-    <state width="1189" height="370" key="GridCell.Tab.0.left" timestamp="1582650774062">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state width="1238" height="193" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582665365928" />
+    <state width="1238" height="193" key="GridCell.Tab.0.right" timestamp="1582665365929">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1189" height="370" key="GridCell.Tab.0.left/70.27.2490.1413@70.27.2490.1413" timestamp="1582650774062" />
-    <state width="1189" height="370" key="GridCell.Tab.0.right" timestamp="1582650774062">
-      <screen x="70" y="27" width="2490" height="1413" />
+    <state width="1238" height="193" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582665365929" />
+    <state x="288" y="141" width="703" height="518" key="find.popup" timestamp="1582661883035">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1189" height="370" key="GridCell.Tab.0.right/70.27.2490.1413@70.27.2490.1413" timestamp="1582650774062" />
-    <state x="181" y="368" width="1022" height="737" key="SettingsEditor" timestamp="1582644468985">
-      <screen x="70" y="27" width="2490" height="1413" />
-    </state>
-    <state x="181" y="368" width="1022" height="737" key="SettingsEditor/70.27.2490.1413@70.27.2490.1413" timestamp="1582644468985" />
+    <state x="288" y="141" width="703" height="518" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1582661883035" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go_patterns$TestFacadeCredit_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestFacadeCredit in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582650774032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_patterns$go_test_github_com_LuLStackCoder_go_patterns_pkg_storage.out" NAME="go test github.com/LuLStackCoder/go-patterns/pkg/storage Coverage Results" MODIFIED="1582663776703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_patterns$go_test_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="go test github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582663925700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_patterns$go_test_github_com_LuLStackCoder_go_patterns_pkg_validator.out" NAME="go test github.com/LuLStackCoder/go-patterns/pkg/validator Coverage Results" MODIFIED="1582664972172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

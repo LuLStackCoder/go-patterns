@@ -18,23 +18,23 @@ func TestValidatorCheckCreditAmount(t *testing.T) {
 		amount uint64
 	}
 	tests := []struct {
-		name    string
-		args    args
+		name string
+		args args
 		want bool
 	}{
 		{
-			name:    "TestBadMinAmount",
-			args:    args{0},
+			name: "TestBadMinAmount",
+			args: args{0},
 			want: false,
 		},
 		{
-			name:    "TestBadMaxAmount",
-			args:    args{1000000},
+			name: "TestBadMaxAmount",
+			args: args{1000000},
 			want: false,
 		},
 		{
-			name:    "TestGoodAmount",
-			args:    args{3000},
+			name: "TestGoodAmount",
+			args: args{3000},
 			want: true,
 		},
 	}
@@ -52,23 +52,23 @@ func TestValidatorCheckDebitAmount(t *testing.T) {
 		amount uint64
 	}
 	tests := []struct {
-		name    string
-		args    args
+		name string
+		args args
 		want bool
 	}{
 		{
-			name:    "TestBadMinAmount",
-			args:    args{0},
+			name: "TestBadMinAmount",
+			args: args{0},
 			want: false,
 		},
 		{
-			name:    "TestBadMaxAmount",
-			args:    args{1000000},
+			name: "TestBadMaxAmount",
+			args: args{1000000},
 			want: false,
 		},
 		{
-			name:    "TestGoodAmount",
-			args:    args{3000},
+			name: "TestGoodAmount",
+			args: args{3000},
 			want: true,
 		},
 	}

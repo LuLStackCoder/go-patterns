@@ -11,16 +11,14 @@ import (
 
 var (
 	accounts = map[uint64]*models.Account{
-		0: &models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
-		1: &models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
-		2: &models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
-		3: &models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
+		0: {AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 450},
+		1: {AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 1200},
+		2: {AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
+		3: {AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
 	}
 	accountsChanged = map[uint64]*models.Account{
-		0: &models.Account{AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 350},
-		1: &models.Account{AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 6200},
-		2: &models.Account{AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
-		3: &models.Account{AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
+		0: {AccountID: 0, Name: "JamesBond", CardNumber: "427623499434", Cvv: "221", Balance: 350},
+		1: {AccountID: 1, Name: "AlexMercer", CardNumber: "427623452142", Cvv: "772", Balance: 6200},
 	}
 )
 
