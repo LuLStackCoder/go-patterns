@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3bce3c3c-b3a1-4ea2-81b5-02026d2c0fc1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/models/markup.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/models/markup.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/visitor/visitor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/visitor/visitor_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +39,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/Cellar/go/1.13.7/libexec" />
+  <component name="GOROOT" path="/usr/lib/go-1.12" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -57,6 +58,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
@@ -67,7 +69,7 @@
       <recent name="$PROJECT_DIR$/facade" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade">
+  <component name="RunManager" selected="Go Test.Test_visitor_ParseTex in github.com/LuLStackCoder/go-patterns/pkg/visitor">
     <configuration name="TestFacadeCredit in github.com/LuLStackCoder/go-patterns/pkg/facade" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="facadeapp" />
       <working_directory value="$PROJECT_DIR$/pkg/facade" />
@@ -101,35 +103,35 @@
       <pattern value="^TestPaymentDebit$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestStorageAddToBalance in github.com/LuLStackCoder/go-patterns/pkg/storage" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_visitor_ParseHtml in github.com/LuLStackCoder/go-patterns/pkg/visitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="facadeapp" />
-      <working_directory value="$PROJECT_DIR$/pkg/storage" />
+      <working_directory value="$PROJECT_DIR$/pkg/visitor" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/LuLStackCoder/go-patterns/pkg/storage" />
+      <package value="github.com/LuLStackCoder/go-patterns/pkg/visitor" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestStorageAddToBalance$" />
+      <pattern value="^Test_visitor_ParseHtml$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestStorageSubFromBalance in github.com/LuLStackCoder/go-patterns/pkg/storage" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_visitor_ParseTex in github.com/LuLStackCoder/go-patterns/pkg/visitor" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="facadeapp" />
-      <working_directory value="$PROJECT_DIR$/pkg/storage" />
+      <working_directory value="$PROJECT_DIR$/pkg/visitor" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="github.com/LuLStackCoder/go-patterns/pkg/storage" />
+      <package value="github.com/LuLStackCoder/go-patterns/pkg/visitor" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestStorageSubFromBalance$" />
+      <pattern value="^Test_visitor_ParseTex$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.Test_visitor_ParseTex in github.com/LuLStackCoder/go-patterns/pkg/visitor" />
+        <item itemvalue="Go Test.Test_visitor_ParseHtml in github.com/LuLStackCoder/go-patterns/pkg/visitor" />
         <item itemvalue="Go Test.TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade" />
         <item itemvalue="Go Test.TestFacadeCredit in github.com/LuLStackCoder/go-patterns/pkg/facade" />
         <item itemvalue="Go Test.TestFacadeGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade" />
-        <item itemvalue="Go Test.TestStorageSubFromBalance in github.com/LuLStackCoder/go-patterns/pkg/storage" />
-        <item itemvalue="Go Test.TestStorageAddToBalance in github.com/LuLStackCoder/go-patterns/pkg/storage" />
       </list>
     </recent_temporary>
   </component>
@@ -149,26 +151,26 @@
     </state>
     <state x="221" y="241" width="328" height="323" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1582578171029" />
     <state x="500" y="452" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/70.27.2490.1413@70.27.2490.1413" timestamp="1582029756805" />
-    <state width="1238" height="244" key="GridCell.Tab.0.bottom" timestamp="1582569319383">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1192" height="370" key="GridCell.Tab.0.bottom" timestamp="1582621766925">
+      <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state width="1238" height="244" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582569319383" />
-    <state width="1199" height="371" key="GridCell.Tab.0.bottom/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588442" />
-    <state width="1238" height="244" key="GridCell.Tab.0.center" timestamp="1582569319383">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1192" height="370" key="GridCell.Tab.0.bottom/70.27.2490.1413@70.27.2490.1413" timestamp="1582621766925" />
+    <state width="1192" height="370" key="GridCell.Tab.0.center" timestamp="1582621766924">
+      <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state width="1238" height="244" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582569319383" />
-    <state width="1199" height="371" key="GridCell.Tab.0.center/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588441" />
-    <state width="1238" height="244" key="GridCell.Tab.0.left" timestamp="1582569319382">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1192" height="370" key="GridCell.Tab.0.center/70.27.2490.1413@70.27.2490.1413" timestamp="1582621766924" />
+    <state width="1192" height="370" key="GridCell.Tab.0.left" timestamp="1582621766924">
+      <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state width="1238" height="244" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582569319382" />
-    <state width="1199" height="371" key="GridCell.Tab.0.left/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588440" />
-    <state width="1238" height="244" key="GridCell.Tab.0.right" timestamp="1582569319383">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1192" height="370" key="GridCell.Tab.0.left/70.27.2490.1413@70.27.2490.1413" timestamp="1582621766924" />
+    <state width="1192" height="370" key="GridCell.Tab.0.right" timestamp="1582621766924">
+      <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state width="1238" height="244" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582569319383" />
-    <state width="1199" height="371" key="GridCell.Tab.0.right/70.27.2490.1413@70.27.2490.1413" timestamp="1582393588441" />
+    <state width="1192" height="370" key="GridCell.Tab.0.right/70.27.2490.1413@70.27.2490.1413" timestamp="1582621766924" />
     <state x="181" y="368" width="1022" height="737" key="SettingsEditor" timestamp="1582029583156">
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
@@ -177,6 +179,10 @@
       <screen x="70" y="27" width="2490" height="1413" />
     </state>
     <state x="464" y="301" width="446" height="871" key="com.goide.refactor.move.GoMoveDeclarationDialog/70.27.2490.1413@70.27.2490.1413" timestamp="1582390873208" />
+    <state x="351" y="366" width="662" height="742" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582621680976">
+      <screen x="70" y="27" width="2490" height="1413" />
+    </state>
+    <state x="351" y="366" width="662" height="742" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/70.27.2490.1413@70.27.2490.1413" timestamp="1582621680976" />
     <state x="422" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582534469924">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
@@ -188,7 +194,7 @@
     <state x="861" y="343" width="905" height="817" key="search.everywhere.popup/70.27.2490.1413@70.27.2490.1413" timestamp="1582032220870" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/go_patterns$TestPaymentDebit_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582569274944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/go_patterns$TestPaymentGetInfo_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestPaymentGetInfo in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582393588377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_patterns$TestPaymentDebit_in_github_com_LuLStackCoder_go_patterns_pkg_facade.out" NAME="TestPaymentDebit in github.com/LuLStackCoder/go-patterns/pkg/facade Coverage Results" MODIFIED="1582569274944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

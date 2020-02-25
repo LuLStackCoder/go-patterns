@@ -2,5 +2,5 @@ package models
 
 const (
 	HtmlTags = `<[^>]*>`
-	TexMarkUp = `\\[^\s]*`
+	TexMarkUp = `\\.*(}\s|\s|$)`
 )
