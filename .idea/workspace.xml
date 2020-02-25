@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bce3c3c-b3a1-4ea2-81b5-02026d2c0fc1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cmd/visitor/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/html_doc/html_doc.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/html_doc/html_doc_mock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/html_doc/html_doc_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/models/markup.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/tex_doc/tex_doc.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/tex_doc/tex_doc_mock.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/tex_doc/tex_doc_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/visitor/visitor.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/visitor/visitor_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Facade.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/facade/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/facade/facade.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/facade/facade_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/models/account.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/storage/storage.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/storage/storage_mock.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/storage/storage_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/validator/validator.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/validator/validator_mock.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/validator/validator_test.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/visitor/visitor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/visitor/visitor_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
