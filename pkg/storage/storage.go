@@ -16,7 +16,7 @@ type Storage interface {
 }
 
 type storage struct {
-	mx       sync.RWMutex
+	sync.RWMutex
 	accounts map[uint64]*models.Account
 }
 
@@ -56,8 +56,8 @@ func (s *storage) Jsonify(accountID uint64) (accInfo []byte, err error) {
 
 // getAccount returns account instance by id
 func (s *storage) getAccount(accountID uint64) (reqAccount *models.Account, err error) {
-	s.mx.RLock()
-	defer s.mx.RUnlock()
+	s.RLock()
+	defer s.RUnlock()
 	if _, ok := s.accounts[accountID]; !ok {
 		err = fmt.Errorf("id doesn't exist in account storage")
 		return

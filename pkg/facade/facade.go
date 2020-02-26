@@ -54,7 +54,7 @@ func (f *facade) GetInfo(accountID uint64) (accInfo string, err error) {
 }
 
 // NewFacade initializes the Facade
-func NewFacade(storage storageFacade, validator validatorFacade) *facade {
+func NewFacade(storage storageFacade, validator validatorFacade) Facade {
 	return &facade{
 		storage:   storage,
 		validator: validator,

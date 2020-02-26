@@ -24,11 +24,11 @@ var (
 		2: {AccountID: 2, Name: "EdsgerDijkstra", CardNumber: "427621234151", Cvv: "355", Balance: 3400},
 		3: {AccountID: 3, Name: "AlanTuring", CardNumber: "42762948753743", Cvv: "987", Balance: 5000},
 	}
+	logErr = log.New(os.Stderr, "", 0)
+	logDef = log.New(os.Stdout, "", 0)
 )
 
 func main() {
-	logErr := log.New(os.Stderr, "", 0)
-	logDef := log.New(os.Stdout, "", 0)
 	newStorage := storage.NewStorage(accounts)
 	newValidator := validator.NewValidator(CreditMaxLimit, CreditMinLimit, DebitMaxLimit, DebitMinLimit)
 	newFacade := facade.NewFacade(newStorage, newValidator)
