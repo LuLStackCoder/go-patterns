@@ -1,7 +1,7 @@
 package main
 
 import (
-	`fmt`
+	`log`
 	`os`
 
 	`github.com/LuLStackCoder/go-patterns/pkg/facade`
@@ -27,29 +27,27 @@ var (
 )
 
 func main() {
-	var newStorage = storage.NewStorage(accounts)
-	var newValidator = validator.NewValidator(CreditMaxLimit, CreditMinLimit, DebitMaxLimit, DebitMinLimit)
-	var newFacade = facade.NewFacade(newStorage, newValidator)
-	var infoId0, errId0 = newFacade.GetInfo(0)
-	if errId0 == nil {
-		fmt.Println(infoId0)
+	logErr := log.New(os.Stderr, "", 0)
+	logDef := log.New(os.Stdout, "", 0)
+	newStorage := storage.NewStorage(accounts)
+	newValidator := validator.NewValidator(CreditMaxLimit, CreditMinLimit, DebitMaxLimit, DebitMinLimit)
+	newFacade := facade.NewFacade(newStorage, newValidator)
+
+	if infoId0, err := newFacade.GetInfo(0); err == nil {
+		logDef.Println(infoId0)
 		if err := newFacade.Credit(0, 220); err != nil {
-			_, _ = fmt.Fprintln(os.Stderr, err)
+			logErr.Println(err)
 		}
 		infoId0, _ = newFacade.GetInfo(0)
-		fmt.Println(infoId0)
+		logDef.Println(infoId0)
 	}
-	var infoId2, errId2 = newFacade.GetInfo(2)
-	if errId2 == nil {
-		fmt.Println(infoId2)
+
+	if infoId2, err := newFacade.GetInfo(2); err == nil {
+		logDef.Println(infoId2)
 		if err := newFacade.Debit(2, 3000); err != nil {
-			_, _ = fmt.Fprintln(os.Stderr, err)
+			logErr.Println(err)
 		}
 		infoId2, _ = newFacade.GetInfo(2)
-		fmt.Println(infoId2)
-	}
-	var infoId1, errId1 = newFacade.GetInfo(1)
-	if errId1 == nil {
-		fmt.Println(infoId1)
+		logDef.Println(infoId2)
 	}
 }
